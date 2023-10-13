@@ -9,6 +9,7 @@ use CodeIgniter\Filters\Honeypot;
 use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\SecureHeaders;
 
+
 class Filters extends BaseConfig
 {
     /**
@@ -19,11 +20,10 @@ class Filters extends BaseConfig
      * @phpstan-var array<string, class-string>
      */
     public array $aliases = [
-        'csrf'          => CSRF::class,
-        'toolbar'       => DebugToolbar::class,
-        'honeypot'      => Honeypot::class,
-        'invalidchars'  => InvalidChars::class,
-        'secureheaders' => SecureHeaders::class,
+        'csrf'     => \CodeIgniter\Filters\CSRF::class,
+		'toolbar'  => \CodeIgniter\Filters\DebugToolbar::class,
+		'honeypot' => \CodeIgniter\Filters\Honeypot::class,
+		'authGuard' => \App\Filters\AuthGuard::class,
     ];
 
     /**
@@ -66,5 +66,7 @@ class Filters extends BaseConfig
      * Example:
      * 'isLoggedIn' => ['before' => ['account/*', 'profiles/*']]
      */
-    public array $filters = [];
+    public array $filters = [
+        'admin' => [],
+    ];
 }
